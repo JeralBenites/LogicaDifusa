@@ -1,0 +1,43 @@
+/*****************************************************************************
+
+		Copyright (c) My Company
+
+ Project:  LOGICDIFUSADUCHA
+ FileName: INGRESODATOS.PRO
+ Purpose: No description
+ Written by: Visual Prolog
+ Comments:
+******************************************************************************/
+
+include "logicdifusaducha.inc"
+
+domains
+i=integer
+r=real
+
+database-dato
+datos(i,r,r,r)
+
+predicates
+nondeterm main
+nondeterm repite
+nondeterm ingreso
+
+
+clauses
+main:-ingreso,
+save("Dato.dat",dato),
+write("Grabacion Exitosa!!!!!!!!!"),nl.
+
+ingreso:-repite,write("Ingrese Temperatura : "),readint(X),nl,%25
+                write("Ingrese Los rango del Cudal  : "),nl,
+                write("Ingrese rango 1 : "),readreal(Y1),nl,%10.715
+                write("Ingrese rango 2 : "),readreal(Y2),nl,%11.33
+                write("Ingrese rango 3 : "),readreal(Y3),nl,%0
+                assertz(datos(X,Y1,Y2,Y3),dato),nl.
+repite.
+repite:-repite.
+      
+goal
+main.
+
